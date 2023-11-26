@@ -11,6 +11,7 @@ import Button from "../../Components/Button/Button";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hositng_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hositng_key}`;
@@ -28,8 +29,17 @@ const UpdateProfile = () => {
     useEffect(() => {
         upazillaRefetch();
     }, [zillaId, upazillaRefetch]);
+    const { data: userData, loading: userDataLoading } = useQuery({
+        queryKey: ["userData"],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user.email}`);
+            return res.data.user;
+        },
+        enabled: !!user,
+    });
+    if (zillaLoading || upazillaLoading || loading || userDataLoading)
+        return <Loading />;
 
-    if (zillaLoading || upazillaLoading || loading) return <Loading />;
     const handleUpdateProfile = async (e) => {
         let photoURL = "";
         e.preventDefault();
