@@ -17,6 +17,15 @@ const SignUp = () => {
     } = useForm();
 
     const onSubmit = (data) => {
+        if (data.password !== data.password2) {
+            Swal.fire({
+                icon: "error",
+                title: "Passwords didn't match",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            return;
+        }
         createUser(data.email, data.password)
             .then((result) => {
                 updateUserProfile(data.name, data.url)
@@ -37,7 +46,7 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
-                                    navigate("/");
+                                    navigate("/updateprofile");
                                 }
                             })
                             .catch((error) => {
@@ -170,6 +179,22 @@ const SignUp = () => {
                                         one number and one special character
                                     </span>
                                 )}
+                                <label className="label">
+                                    <span className="label-text ">
+                                        Confirm Password
+                                    </span>
+                                </label>
+                                <input
+                                    type="password"
+                                    placeholder="password"
+                                    name="password2"
+                                    {...register("password2", {
+                                        required: true,
+                                        maxLength: 20,
+                                        minLength: 6,
+                                    })}
+                                    className="input input-bordered"
+                                />
                             </div>
                             <div className="form-control mt-6">
                                 <button

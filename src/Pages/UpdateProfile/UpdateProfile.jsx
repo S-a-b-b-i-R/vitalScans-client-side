@@ -29,17 +29,17 @@ const UpdateProfile = () => {
     useEffect(() => {
         upazillaRefetch();
     }, [zillaId, upazillaRefetch]);
-    const { data: userData, loading: userDataLoading } = useQuery({
+    const { data: userData, isPending: userDataLoading } = useQuery({
         queryKey: ["userData"],
+        enabled: !!user,
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/${user.email}`);
             return res.data.user;
         },
-        enabled: !!user,
     });
     if (zillaLoading || upazillaLoading || loading || userDataLoading)
         return <Loading />;
-
+    console.log(userData);
     const handleUpdateProfile = async (e) => {
         let photoURL = "";
         e.preventDefault();
@@ -145,7 +145,11 @@ const UpdateProfile = () => {
                                 </label>
                                 <select
                                     className="border border-slate-300 p-3 rounded-lg"
-                                    defaultValue="Select Blood Group"
+                                    defaultValue={
+                                        userData.bloodGroup
+                                            ? userData.bloodGroup
+                                            : "Select Blood Group"
+                                    }
                                     onChange={(e) => {
                                         setBloodGroup(e.target.value);
                                         console.log(bloodGroup);
@@ -172,7 +176,11 @@ const UpdateProfile = () => {
                                 </label>
                                 <select
                                     className="border border-slate-300 p-3 rounded-lg"
-                                    defaultValue="Select District"
+                                    defaultValue={
+                                        userData.district
+                                            ? userData.district
+                                            : "Select District"
+                                    }
                                     onChange={(e) => {
                                         setZillaId(e.target.value);
                                     }}
@@ -193,7 +201,11 @@ const UpdateProfile = () => {
                                 </label>
                                 <select
                                     className="border border-slate-300 p-3 rounded-lg"
-                                    defaultValue="Select Upazilla"
+                                    defaultValue={
+                                        userData.upazilla
+                                            ? userData.upazilla
+                                            : "Select Upazilla"
+                                    }
                                     onChange={(e) => {
                                         setUpazillaId(e.target.value);
                                     }}

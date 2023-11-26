@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
+import Dashboard from "../Layouts/Dashboard";
 
 const Routes = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const Routes = createBrowserRouter([
                 element: <UpdateProfile />,
             },
         ],
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
     },
 ]);
 
