@@ -34,6 +34,17 @@ const Navbar = () => {
             <li>
                 <NavLink to="/services">Services</NavLink>
             </li>
+            {user ? (
+                <li>
+                    <a className="" onClick={handleLogout}>
+                        Log Out
+                    </a>
+                </li>
+            ) : (
+                <li>
+                    <NavLink to="/login">Login</NavLink>
+                </li>
+            )}
         </>
     );
     return (
