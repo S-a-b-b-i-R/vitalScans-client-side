@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/Authprovider";
 import Swal from "sweetalert2";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -36,9 +36,7 @@ const Navbar = () => {
             </li>
             {user ? (
                 <li>
-                    <a className="" onClick={handleLogout}>
-                        Log Out
-                    </a>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
             ) : (
                 <li>
@@ -47,6 +45,18 @@ const Navbar = () => {
             )}
         </>
     );
+
+    let profilePhoto = "";
+    if (user !== null) {
+        if (user.photoURL !== null) {
+            profilePhoto = user.photoURL;
+        } else {
+            profilePhoto = "https://i.ibb.co/VqVnHpt/logo.png";
+        }
+    } else {
+        profilePhoto = "https://i.ibb.co/VqVnHpt/logo.png";
+    }
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -86,7 +96,59 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {/* <a className="btn">Button</a> */}
+                {user && (
+                    <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle avatar"
+                    >
+                        {user !== null ? (
+                            <div className="w-10 rounded-full">
+                                <img src={profilePhoto} />
+                            </div>
+                        ) : (
+                            <span></span>
+                        )}
+                    </label>
+                )}
+                {user ? (
+                    <details className="dropdown">
+                        <summary className="m-1 btn border-none font-bold hover:bg-white text-textCol hover:text-mainCol">
+                            {user.displayName !== null
+                                ? user.displayName
+                                : user.email}
+                        </summary>
+                        <ul className="p-2 shadow menu dropdown-content w-36 z-[1] rounded-box right-0">
+                            <li>
+                                <Link
+                                    onClick={handleLogout}
+                                    className="btn btn-ghost btn-sm rounded-btn normal-case"
+                                >
+                                    Logout
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/updateprofile"
+                                    className="btn btn-ghost btn-sm rounded-btn normal-case"
+                                >
+                                    Update Profile
+                                </Link>
+                            </li>
+                        </ul>
+                    </details>
+                ) : (
+                    <ul className="p-2 shadow menu dropdown-content z-[1]  rounded-box">
+                        <li>
+                            <NavLink
+                                to="/login"
+                                className="btn btn-ghost btn-sm rounded-btn normal-case font-bold"
+                            >
+                                Login
+                            </NavLink>
+                        </li>
+                    </ul>
+                )}
             </div>
         </div>
     );
