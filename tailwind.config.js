@@ -4,7 +4,8 @@ export default {
     theme: {
         extend: {
             colors: {
-                mainCol: "#31514e",
+                mainCol: "#63b9ff",
+                textCol: "#31514e",
             },
         },
     },
