@@ -11,6 +11,10 @@ import ManageTest from "../Pages/Dashboard/ManageTest/ManageTest";
 import UpdateTest from "../Pages/Dashboard/UpdateTest/UpdateTest";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import CreateSlot from "../Pages/Dashboard/CreateSlot/CreateSlot";
+import ManageSlot from "../Pages/Dashboard/ManageSlot/ManageSlot";
+import UpdateSlot from "../Pages/Dashboard/UpdateSlot/UpdateSlot";
+import PrivateRoutes from "./PrivateRoutes";
+import AvailableTest from "../Pages/AvailableTest/AvailableTest";
 
 const Routes = createBrowserRouter([
     {
@@ -31,7 +35,19 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/updateprofile",
-                element: <UpdateProfile />,
+                element: (
+                    <PrivateRoutes>
+                        <UpdateProfile />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/tests",
+                element: (
+                    <PrivateRoutes>
+                        <AvailableTest />
+                    </PrivateRoutes>
+                ),
             },
         ],
     },
@@ -76,6 +92,22 @@ const Routes = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <CreateSlot />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "manageslot",
+                element: (
+                    <AdminRoutes>
+                        <ManageSlot />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "updateslot/:id",
+                element: (
+                    <AdminRoutes>
+                        <UpdateSlot />
                     </AdminRoutes>
                 ),
             },

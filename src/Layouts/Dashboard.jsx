@@ -44,6 +44,12 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to="/dashboard/manageslot">
+                                    <FaListUl />
+                                    Manage Slot
+                                </NavLink>
+                            </li>
+                            <li>
                                 <NavLink to="/dashboard/bookings">
                                     <FaCalendarAlt />
                                     Manage Appointments

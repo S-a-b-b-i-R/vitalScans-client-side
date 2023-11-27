@@ -1,23 +1,40 @@
 import { useState } from "react";
-import Loading from "../../../Components/Loading/Loading";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useTest from "../../../hooks/useTest";
-import Swal from "sweetalert2";
 import Button from "../../../Components/Button/Button";
+import Loading from "../../../Components/Loading/Loading";
+import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
-const CreateSlot = () => {
+const UpdateSlot = () => {
     const { testData, testLoading } = useTest();
     const [testId, setTestId] = useState(null);
     const [testDate, setTestDate] = useState(
         new Date().toISOString().slice(0, 10)
     );
     const [slotNum, setSlotNum] = useState(1);
+    const params = useParams();
     const axiosSecure = useAxiosSecure();
-    if (testLoading) return <Loading />;
-    const handelAddSlot = async (e) => {
+
+    const {
+        data: slotData,
+        isPending: slotLoading,
+        refetch: slotRefetch,
+    } = useQuery({
+        queryKey: ["slot", params.id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/slots/${params.id}`);
+            return res.data.slot;
+        },
+    });
+
+    if (testLoading || slotLoading) return <Loading />;
+
+    const handelUpdateSlot = async (e) => {
         e.preventDefault();
-        if (!testId) {
+        if (!testId && !slotData.testId._id) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -25,7 +42,7 @@ const CreateSlot = () => {
             });
             return;
         }
-        if (!testDate) {
+        if (!testDate && !slotData.testDate) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -33,7 +50,7 @@ const CreateSlot = () => {
             });
             return;
         }
-        if (!slotNum) {
+        if (!slotNum && !slotData.slotNum) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -42,9 +59,9 @@ const CreateSlot = () => {
             return;
         }
         const data = {
-            testId,
-            testDate,
-            slotNum,
+            testId: testId ? testId : slotData.testId._id,
+            testDate: testDate ? testDate : slotData.testDate,
+            slotNum: slotNum ? slotNum : slotData.slotNum,
         };
         try {
             const res = await axiosSecure.post("/slots", data);
@@ -52,9 +69,10 @@ const CreateSlot = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Slot created successfully!",
+                    text: "Slot updated successfully!",
                 });
             }
+            slotRefetch();
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -64,11 +82,12 @@ const CreateSlot = () => {
             });
         }
     };
+
     return (
         <div className="px-40">
-            <SectionTitle heading="Create Slot" />
+            <SectionTitle heading="Update Slot" />
             <div className="w-2/3 mx-auto">
-                <form onSubmit={handelAddSlot} className="card-body">
+                <form onSubmit={handelUpdateSlot} className="card-body">
                     <div className="flex gap-2">
                         <div className="form-control w-1/2">
                             <label className="label">
@@ -77,7 +96,11 @@ const CreateSlot = () => {
                             <select
                                 className="select select-bordered w-full"
                                 required
-                                defaultValue="Select Test"
+                                defaultValue={
+                                    slotData
+                                        ? slotData.testId._id
+                                        : "Select Test"
+                                }
                                 onChange={(e) => setTestId(e.target.value)}
                             >
                                 <option disabled>Select Test</option>
@@ -94,9 +117,13 @@ const CreateSlot = () => {
                             </label>
                             <input
                                 type="date"
-                                defaultValue={new Date()
-                                    .toISOString()
-                                    .slice(0, 10)}
+                                defaultValue={
+                                    slotData
+                                        ? new Date(slotData.testDate)
+                                              .toISOString()
+                                              .slice(0, 10)
+                                        : new Date().toISOString().slice(0, 10)
+                                }
                                 className="input input-bordered"
                                 onChange={(e) => setTestDate(e.target.value)}
                                 required
@@ -112,13 +139,13 @@ const CreateSlot = () => {
                             className="input input-bordered"
                             min={1}
                             step={1}
-                            defaultValue={1}
+                            defaultValue={slotData ? slotData.slotNum : 1}
                             onChange={(e) => setSlotNum(e.target.value)}
                             required
                         />
                     </div>
                     <div className="form-control mt-6">
-                        <Button type="submit" text="Create Slot" />
+                        <Button type="submit" text="Update Slot" />
                     </div>
                 </form>
             </div>
@@ -126,4 +153,4 @@ const CreateSlot = () => {
     );
 };
 
-export default CreateSlot;
+export default UpdateSlot;
