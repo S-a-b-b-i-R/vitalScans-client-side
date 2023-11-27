@@ -110,9 +110,7 @@ const AvailableTest = () => {
                                     <td>{item.slotNum}</td>
                                     <td>{item.testDate.slice(0, 10)}</td>
                                     <td>
-                                        <Link
-                                            to={`/testdetail/${item.testId._id}`}
-                                        >
+                                        <Link to={`/testdetail/${item._id}`}>
                                             <Button text="Details" />
                                         </Link>
                                     </td>

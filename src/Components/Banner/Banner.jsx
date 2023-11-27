@@ -5,8 +5,7 @@ import useActiveBanner from "../../hooks/useActiveBanner";
 import Loading from "../Loading/Loading";
 
 const Banner = () => {
-    const { activeBanner, activeBannerLoading, activeBannerRefetch } =
-        useActiveBanner();
+    const { activeBanner, activeBannerLoading } = useActiveBanner();
     if (activeBannerLoading) return <Loading />;
     return (
         <div>

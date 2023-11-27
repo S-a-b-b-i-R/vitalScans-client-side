@@ -17,6 +17,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import AvailableTest from "../Pages/AvailableTest/AvailableTest";
 import AddBanner from "../Pages/Dashboard/AddBanner/AddBanner";
 import ManageBanner from "../Pages/Dashboard/ManageBanner/ManageBanner";
+import TestDetail from "../Pages/TestDetail/TestDetail";
+import Payment from "../Pages/Payment/Payment";
 
 const Routes = createBrowserRouter([
     {
@@ -48,6 +50,22 @@ const Routes = createBrowserRouter([
                 element: (
                     <PrivateRoutes>
                         <AvailableTest />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/testdetail/:id",
+                element: (
+                    <PrivateRoutes>
+                        <TestDetail />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/payment",
+                element: (
+                    <PrivateRoutes>
+                        <Payment />
                     </PrivateRoutes>
                 ),
             },
