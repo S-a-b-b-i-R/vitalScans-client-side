@@ -7,6 +7,7 @@ const useTest = () => {
         data: testData,
         error: testError,
         isPending: testLoading,
+        refetch: testRefetch,
     } = useQuery({
         queryKey: ["test"],
         queryFn: async () => {

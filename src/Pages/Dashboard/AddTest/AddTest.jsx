@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Button from "../../../Components/Button/Button";
 import Swal from "sweetalert2";
 
 const AddTest = () => {
-    const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {

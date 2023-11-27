@@ -7,6 +7,7 @@ import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 import Dashboard from "../Layouts/Dashboard";
 import AddTest from "../Pages/Dashboard/AddTest/AddTest";
 import AdminRoutes from "./AdminRoutes";
+import ManageTest from "../Pages/Dashboard/ManageTest/ManageTest";
 
 const Routes = createBrowserRouter([
     {
@@ -36,11 +37,18 @@ const Routes = createBrowserRouter([
         element: <Dashboard />,
         children: [
             {
-                // admin routes
                 path: "addtest",
                 element: (
                     <AdminRoutes>
                         <AddTest />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "managetests",
+                element: (
+                    <AdminRoutes>
+                        <ManageTest />
                     </AdminRoutes>
                 ),
             },
