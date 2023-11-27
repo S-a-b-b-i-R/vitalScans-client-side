@@ -10,6 +10,7 @@ import AdminRoutes from "./AdminRoutes";
 import ManageTest from "../Pages/Dashboard/ManageTest/ManageTest";
 import UpdateTest from "../Pages/Dashboard/UpdateTest/UpdateTest";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import CreateSlot from "../Pages/Dashboard/CreateSlot/CreateSlot";
 
 const Routes = createBrowserRouter([
     {
@@ -67,6 +68,14 @@ const Routes = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <AllUsers />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "addslot",
+                element: (
+                    <AdminRoutes>
+                        <CreateSlot />
                     </AdminRoutes>
                 ),
             },

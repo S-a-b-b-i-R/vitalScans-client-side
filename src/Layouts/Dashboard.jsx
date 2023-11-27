@@ -5,6 +5,7 @@ import { RiReservedFill } from "react-icons/ri";
 import { MdRateReview, MdPayment } from "react-icons/md";
 import { RiContactsLine } from "react-icons/ri";
 import { TbMedicalCross } from "react-icons/tb";
+import { IoCreate } from "react-icons/io5";
 import Loading from "../Components/Loading/Loading";
 import useAdmin from "../hooks/useAdmin";
 
@@ -34,6 +35,12 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/managetests">
                                     <FaListUl />
                                     Manage Tests
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/addslot">
+                                    <IoCreate />
+                                    Create Slot
                                 </NavLink>
                             </li>
                             <li>
