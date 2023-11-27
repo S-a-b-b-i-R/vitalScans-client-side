@@ -48,7 +48,30 @@ const AllUsers = () => {
         });
     };
 
-    const handleBlockUser = (id) => {};
+    const handleBlockUser = (id) => {
+        Swal.fire({
+            title: "Are you sure to block this user?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/block/${id}`).then((res) => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "User blocked",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        refetch();
+                    }
+                });
+            }
+        });
+    };
 
     return (
         <div className="px-40">
@@ -88,14 +111,20 @@ const AllUsers = () => {
                                     )}
                                 </td>
                                 <td>
-                                    <button
-                                        onClick={() =>
-                                            handleBlockUser(user._id)
-                                        }
-                                        className="btn bg-transparent border-black"
-                                    >
-                                        <ImBlocked />
-                                    </button>
+                                    {user.isActive === false ? (
+                                        <>Blocked</>
+                                    ) : (
+                                        <>
+                                            <button
+                                                onClick={() =>
+                                                    handleBlockUser(user._id)
+                                                }
+                                                className="btn bg-transparent border-black"
+                                            >
+                                                <ImBlocked />
+                                            </button>
+                                        </>
+                                    )}
                                 </td>
                             </tr>
                         ))}
