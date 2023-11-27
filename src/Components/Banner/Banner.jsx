@@ -1,8 +1,13 @@
 import Marquee from "react-fast-marquee";
 import Container from "../Container/Container";
 import Button from "../Button/Button";
+import useActiveBanner from "../../hooks/useActiveBanner";
+import Loading from "../Loading/Loading";
 
 const Banner = () => {
+    const { activeBanner, activeBannerLoading, activeBannerRefetch } =
+        useActiveBanner();
+    if (activeBannerLoading) return <Loading />;
     return (
         <div>
             <Container>
@@ -10,18 +15,18 @@ const Banner = () => {
                     <div className="w-1/2 text-left">
                         <div className="max-w-md">
                             <h1 className="mb-5 text-5xl font-bold">
-                                Hello there 👋, Welcome to your dashboard
+                                {activeBanner.title}
                             </h1>
-                            <p className="mb-5">
-                                Everything you need to get started
-                            </p>
+                            <p className="mb-5">{activeBanner.description}</p>
                             <h2 className="mb-5">
                                 Use Coupon{" "}
                                 <span className="bg-mainCol p-2 rounded-md font-bold">
-                                    WELCOME
+                                    {activeBanner.coupon}
                                 </span>{" "}
                                 to get{" "}
-                                <span className="text-lg font-bold">50%</span>{" "}
+                                <span className="text-lg font-bold">
+                                    {activeBanner.discount}%
+                                </span>{" "}
                                 off
                             </h2>
                             <Marquee className="mb-5">
@@ -72,7 +77,7 @@ const Banner = () => {
                     <div className="w-1/2">
                         <img
                             className="w-full object-cover"
-                            src="https://i.ibb.co/pbkD45Z/banner-3.png"
+                            src={activeBanner.image}
                             alt=""
                         />
                     </div>
