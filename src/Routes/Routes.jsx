@@ -5,6 +5,8 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 import Dashboard from "../Layouts/Dashboard";
+import AddTest from "../Pages/Dashboard/AddTest/AddTest";
+import AdminRoutes from "./AdminRoutes";
 
 const Routes = createBrowserRouter([
     {
@@ -32,6 +34,17 @@ const Routes = createBrowserRouter([
     {
         path: "/dashboard",
         element: <Dashboard />,
+        children: [
+            {
+                // admin routes
+                path: "addtest",
+                element: (
+                    <AdminRoutes>
+                        <AddTest />
+                    </AdminRoutes>
+                ),
+            },
+        ],
     },
 ]);
 

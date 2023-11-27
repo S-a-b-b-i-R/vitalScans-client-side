@@ -25,7 +25,7 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/additems">
+                                <NavLink to="/dashboard/addtest">
                                     <TbMedicalCross />
                                     Add Test
                                 </NavLink>
