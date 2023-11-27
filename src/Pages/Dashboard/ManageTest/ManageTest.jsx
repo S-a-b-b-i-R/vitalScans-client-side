@@ -14,7 +14,7 @@ const ManageTest = () => {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
     const axiosSecure = useAxiosSecure();
-    const { testData, testLoading, testRefetch } = useTest();
+    const { testData, testLoading } = useTest();
     const {
         data: tests,
         isPending: loading,
@@ -34,9 +34,7 @@ const ManageTest = () => {
     }
 
     const numberOfPages = Math.ceil(testData.length / itemsPerPage);
-    console.log(tests.length);
     const pages = [...Array(numberOfPages).keys()];
-    console.log(numberOfPages);
 
     const handleItemsPerPage = (e) => {
         setItemsPerPage(parseInt(e.target.value));
@@ -106,7 +104,7 @@ const ManageTest = () => {
                                 <td>${item.price}</td>
                                 <td>
                                     <Link
-                                        to={`/dashboard/updateitems/${item._id}`}
+                                        to={`/dashboard/updatetest/${item._id}`}
                                         className="btn btn-ghost btn-xs text-xl text-yellow-600"
                                     >
                                         <FaEdit />

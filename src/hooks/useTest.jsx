@@ -15,7 +15,7 @@ const useTest = () => {
             return res.data.tests;
         },
     });
-    return { testData, testError, testLoading };
+    return { testData, testError, testLoading, testRefetch };
 };
 
 export default useTest;
