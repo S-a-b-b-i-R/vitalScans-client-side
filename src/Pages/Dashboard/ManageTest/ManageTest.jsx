@@ -76,18 +76,18 @@ const ManageTest = () => {
     };
 
     return (
-        <div className="px-40">
+        <div className="px-40 space-y-10">
             <SectionTitle heading="Manage Test" />
             <div className="overflow-x-auto">
-                <table className="table table-xs">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th className="w-[5%]">#</th>
                             <th className="w-[15%]">Test Name</th>
-                            <th className="w-[25%]">Details</th>
+                            <th className="w-[30%]">Details</th>
                             <th className="w-[25%]">Preparation</th>
-                            <th className="w-[15%]">Price</th>
+                            <th className="w-[10%]">Price</th>
                             <th className="w-[10%]">Update</th>
                             <th className="w-[10%]">Delete</th>
                         </tr>

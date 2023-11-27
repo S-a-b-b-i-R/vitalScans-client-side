@@ -9,6 +9,7 @@ import AddTest from "../Pages/Dashboard/AddTest/AddTest";
 import AdminRoutes from "./AdminRoutes";
 import ManageTest from "../Pages/Dashboard/ManageTest/ManageTest";
 import UpdateTest from "../Pages/Dashboard/UpdateTest/UpdateTest";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 const Routes = createBrowserRouter([
     {
@@ -58,6 +59,14 @@ const Routes = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <UpdateTest />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "users",
+                element: (
+                    <AdminRoutes>
+                        <AllUsers />
                     </AdminRoutes>
                 ),
             },
