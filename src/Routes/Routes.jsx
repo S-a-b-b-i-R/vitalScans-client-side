@@ -15,6 +15,8 @@ import ManageSlot from "../Pages/Dashboard/ManageSlot/ManageSlot";
 import UpdateSlot from "../Pages/Dashboard/UpdateSlot/UpdateSlot";
 import PrivateRoutes from "./PrivateRoutes";
 import AvailableTest from "../Pages/AvailableTest/AvailableTest";
+import AddBanner from "../Pages/Dashboard/AddBanner/AddBanner";
+import ManageBanner from "../Pages/Dashboard/ManageBanner/ManageBanner";
 
 const Routes = createBrowserRouter([
     {
@@ -108,6 +110,22 @@ const Routes = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <UpdateSlot />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "addbanner",
+                element: (
+                    <AdminRoutes>
+                        <AddBanner />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "managebanner",
+                element: (
+                    <AdminRoutes>
+                        <ManageBanner />
                     </AdminRoutes>
                 ),
             },
