@@ -32,6 +32,23 @@ const AvailableTest = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        //date validation
+        //start date cant be past dates and end date cant be before start date
+        if (startDate > endDate) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Start date can't be after end date!",
+            });
+            return;
+        } else if (startDate < new Date().toISOString().slice(0, 10)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Start date can't be past dates!",
+            });
+            return;
+        }
         console.log(startDate, endDate);
         refetch();
     };
@@ -48,9 +65,7 @@ const AvailableTest = () => {
                             </label>
                             <input
                                 type="date"
-                                defaultValue={new Date()
-                                    .toISOString()
-                                    .slice(0, 10)}
+                                defaultValue={startDate}
                                 className="input input-bordered"
                                 onChange={(e) => setStartDate(e.target.value)}
                             />
@@ -61,25 +76,8 @@ const AvailableTest = () => {
                             </label>
                             <input
                                 type="date"
-                                defaultValue={new Date()
-                                    .toISOString()
-                                    .slice(0, 10)}
-                                onChange={(e) => {
-                                    if (e.target.value < startDate) {
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Oops...",
-                                            text: "End date can't be less than start date!",
-                                        });
-                                        setEndDate(
-                                            new Date()
-                                                .toISOString()
-                                                .slice(0, 10)
-                                        );
-                                    } else {
-                                        setEndDate(e.target.value);
-                                    }
-                                }}
+                                defaultValue={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
                                 className="input input-bordered"
                             />
                         </div>
