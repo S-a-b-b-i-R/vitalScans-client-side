@@ -69,9 +69,6 @@ const ShowReport = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center">
-                <button className="btn normal-case">Download Report</button>
-            </div>
         </Container>
     );
 };
