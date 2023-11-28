@@ -7,6 +7,7 @@ import { RiContactsLine } from "react-icons/ri";
 import { TbMedicalCross } from "react-icons/tb";
 import { IoCreate } from "react-icons/io5";
 import { GiKnightBanner, GiTatteredBanner } from "react-icons/gi";
+import { PiQueue } from "react-icons/pi";
 import Loading from "../Components/Loading/Loading";
 import useAdmin from "../hooks/useAdmin";
 
@@ -63,8 +64,8 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/bookings">
-                                    <GiTatteredBanner />
+                                <NavLink to="/dashboard/manageappointments">
+                                    <PiQueue />
                                     Manage Appointments
                                 </NavLink>
                             </li>

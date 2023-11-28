@@ -21,6 +21,8 @@ import TestDetail from "../Pages/TestDetail/TestDetail";
 import Payment from "../Pages/Payment/Payment";
 import Error from "../Components/Error/Error";
 import Appointment from "../Pages/Appointment/Appointment";
+import ManageAppointments from "../Pages/Dashboard/ManageAppointments/ManageAppointments";
+import CreateReport from "../Pages/Dashboard/CreateReport/CreateReport";
 
 const Routes = createBrowserRouter([
     {
@@ -155,6 +157,22 @@ const Routes = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <ManageBanner />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: "manageappointments",
+                element: (
+                    <AdminRoutes>
+                        <ManageAppointments />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: `createreport/:id`,
+                element: (
+                    <AdminRoutes>
+                        <CreateReport />
                     </AdminRoutes>
                 ),
             },
