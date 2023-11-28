@@ -20,7 +20,10 @@ const ShowReport = () => {
     return (
         <Container>
             <SectionTitle heading="Report" />
-            <div className="w-3/4 mx-auto border px-5 py-20 mb-5 space-y-14">
+            <div
+                // ref={targetRef}
+                className="w-3/4 mx-auto border border-black px-5 py-20 mb-5 space-y-14"
+            >
                 <div className="flex justify-between">
                     <div>
                         <img
@@ -56,13 +59,13 @@ const ShowReport = () => {
                 </div>
                 <div>
                     <p className="font-bold mb-2">Findings:</p>
-                    <div className="border-2 border-dotted p-3">
+                    <div className="border-2 border-dotted border-black p-3">
                         {reportData.results}
                     </div>
                 </div>
                 <div>
                     <p className="font-bold mb-2">Advice:</p>
-                    <div className="border-2 border-dotted p-3">
+                    <div className="border-2 border-dotted border-black p-3">
                         This is for educational purpose only. If you have any
                         health issues, contact a health professional
                         immediately.
