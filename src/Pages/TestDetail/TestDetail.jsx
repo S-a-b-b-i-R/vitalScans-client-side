@@ -22,8 +22,25 @@ const TestDetail = () => {
             return res.data.slot;
         },
     });
+    const { data: userData } = useQuery({
+        queryKey: ["user", user.email],
+        enabled: !!user,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user.email}`);
+            return res.data.user;
+        },
+    });
     if (isPending || loading) return <Loading />;
     const handleBookNow = async () => {
+        if (userData.isActive === false) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please contact Admin to unblock your account!",
+                showConfirmButton: true,
+            });
+            return;
+        }
         const { value: coupon } = await Swal.fire({
             title: "Enter your coupon",
             input: "text",

@@ -1,9 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCartShopping, FaUsers } from "react-icons/fa6";
-import { FaHome, FaCalendarAlt, FaListUl } from "react-icons/fa";
-import { RiReservedFill } from "react-icons/ri";
-import { MdRateReview, MdPayment } from "react-icons/md";
-import { RiContactsLine } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa6";
+import { FaHome, FaListUl } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
 import { TbMedicalCross } from "react-icons/tb";
 import { IoCreate } from "react-icons/io5";
 import { GiKnightBanner, GiTatteredBanner } from "react-icons/gi";
@@ -79,39 +77,15 @@ const Dashboard = () => {
                     ) : (
                         <>
                             <li>
-                                <NavLink to="/dashboard/cart">
-                                    <FaCartShopping />
-                                    My Cart
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink to="/dashboard/userhome">
                                     <FaHome />
                                     User Home
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/reservation">
-                                    <RiReservedFill />
-                                    Reservation
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/review">
-                                    <MdRateReview />
-                                    Add a Review
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink to="/dashboard/paymenthistory">
                                     <MdPayment />
                                     Payment History
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/bookings">
-                                    <FaCalendarAlt />
-                                    My Bookings
                                 </NavLink>
                             </li>
                         </>
@@ -122,12 +96,6 @@ const Dashboard = () => {
                         <NavLink to="/">
                             <FaHome />
                             Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/">
-                            <RiContactsLine />
-                            Contact
                         </NavLink>
                     </li>
                 </ul>

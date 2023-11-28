@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useSlot = () => {
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     const {
         data: slotData,
         error: slotError,
@@ -11,7 +11,7 @@ const useSlot = () => {
     } = useQuery({
         queryKey: ["slot"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/slots");
+            const res = await axiosPublic.get("/slots");
             return res.data.slots;
         },
     });

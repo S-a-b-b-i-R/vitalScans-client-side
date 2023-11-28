@@ -24,6 +24,7 @@ import Appointment from "../Pages/Appointment/Appointment";
 import ManageAppointments from "../Pages/Dashboard/ManageAppointments/ManageAppointments";
 import CreateReport from "../Pages/Dashboard/CreateReport/CreateReport";
 import ShowReport from "../Pages/ShowReport/ShowReport";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const Routes = createBrowserRouter([
     {
@@ -183,6 +184,14 @@ const Routes = createBrowserRouter([
                     <AdminRoutes>
                         <CreateReport />
                     </AdminRoutes>
+                ),
+            },
+            {
+                path: "paymenthistory",
+                element: (
+                    <PrivateRoutes>
+                        <PaymentHistory />
+                    </PrivateRoutes>
                 ),
             },
         ],
