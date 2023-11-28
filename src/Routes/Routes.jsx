@@ -23,6 +23,7 @@ import Error from "../Components/Error/Error";
 import Appointment from "../Pages/Appointment/Appointment";
 import ManageAppointments from "../Pages/Dashboard/ManageAppointments/ManageAppointments";
 import CreateReport from "../Pages/Dashboard/CreateReport/CreateReport";
+import ShowReport from "../Pages/ShowReport/ShowReport";
 
 const Routes = createBrowserRouter([
     {
@@ -79,6 +80,14 @@ const Routes = createBrowserRouter([
                 element: (
                     <PrivateRoutes>
                         <Appointment />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/report/:id",
+                element: (
+                    <PrivateRoutes>
+                        <ShowReport />
                     </PrivateRoutes>
                 ),
             },

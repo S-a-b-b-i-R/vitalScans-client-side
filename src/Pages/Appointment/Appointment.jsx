@@ -4,6 +4,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Components/Loading/Loading";
 import Container from "../../Components/Container/Container";
+import { Link } from "react-router-dom";
+import Button from "../../Components/Button/Button";
 
 const Appointment = () => {
     const axiosSecure = useAxiosSecure();
@@ -49,7 +51,11 @@ const Appointment = () => {
                                                     Pending
                                                 </span>
                                             ) : (
-                                                <span>Ready</span>
+                                                <Link
+                                                    to={`/report/${item._id}`}
+                                                >
+                                                    <Button text="Report" />
+                                                </Link>
                                             )}
                                         </td>
                                     </tr>
