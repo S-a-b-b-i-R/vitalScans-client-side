@@ -180,7 +180,7 @@ const AvailableTest = () => {
                         <select
                             value={itemsPerPage}
                             onChange={handleItemsPerPage}
-                            className="w-52"
+                            className="w-52 border-2 p-1"
                         >
                             <option value="5">5</option>
                             <option value="10">10</option>
