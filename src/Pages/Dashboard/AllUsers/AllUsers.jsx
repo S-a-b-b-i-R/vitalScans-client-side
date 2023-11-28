@@ -5,6 +5,7 @@ import Loading from "../../../Components/Loading/Loading";
 import Swal from "sweetalert2";
 import { GrUpdate } from "react-icons/gr";
 import { ImBlocked } from "react-icons/im";
+import { CgUnblock } from "react-icons/cg";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -73,6 +74,31 @@ const AllUsers = () => {
         });
     };
 
+    const handleUnBlockUser = (id) => {
+        Swal.fire({
+            title: "Are you sure to unblock this user?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/block/${id}`).then((res) => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "User unblocked",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        refetch();
+                    }
+                });
+            }
+        });
+    };
+
     return (
         <div className="px-40">
             <SectionTitle heading="All Users" />
@@ -112,7 +138,15 @@ const AllUsers = () => {
                                 </td>
                                 <td>
                                     {user.isActive === false ? (
-                                        <>Blocked</>
+                                        <button
+                                            onClick={() =>
+                                                handleUnBlockUser(user._id)
+                                            }
+                                            className="btn bg-transparent border-black"
+                                        >
+                                            Unblock
+                                            <CgUnblock />
+                                        </button>
                                     ) : (
                                         <>
                                             <button
@@ -121,6 +155,7 @@ const AllUsers = () => {
                                                 }
                                                 className="btn bg-transparent border-black"
                                             >
+                                                Block
                                                 <ImBlocked />
                                             </button>
                                         </>
