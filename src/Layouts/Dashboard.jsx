@@ -15,7 +15,7 @@ const Dashboard = () => {
     return (
         <div className="flex min-h-screen">
             {/* dashboard side-bar */}
-            <div className="w-64 min-h-full bg-orange-100">
+            <div className="w-1/4 min-h-full bg-orange-100">
                 <ul className="menu p-4">
                     {isAdmin ? (
                         <>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                             <li>
                                 <NavLink to="/dashboard/managebanner">
                                     <GiTatteredBanner />
-                                    Mange Banner
+                                    Manage Banner
                                 </NavLink>
                             </li>
                             <li>
@@ -77,9 +77,21 @@ const Dashboard = () => {
                     ) : (
                         <>
                             <li>
-                                <NavLink to="/dashboard/userhome">
+                                <NavLink to="/dashboard/updateprofile">
                                     <FaHome />
-                                    User Home
+                                    My Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/appointments">
+                                    <FaHome />
+                                    My Upcoming Appointments
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/testresults">
+                                    <FaHome />
+                                    Test Results
                                 </NavLink>
                             </li>
                             <li>

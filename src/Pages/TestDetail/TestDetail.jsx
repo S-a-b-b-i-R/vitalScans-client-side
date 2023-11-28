@@ -56,7 +56,7 @@ const TestDetail = () => {
                         icon: "error",
                         title: "Oops...",
                         text: "Invalid coupon code!",
-                        timer: 1500,
+                        showConfirmButton: true,
                     });
                 }
                 const booking = {
@@ -71,8 +71,7 @@ const TestDetail = () => {
                     Swal.fire({
                         icon: "success",
                         title: "Test booked",
-                        showConfirmButton: false,
-                        timer: 1500,
+                        showConfirmButton: true,
                     });
                     navigate("/payment");
                 }

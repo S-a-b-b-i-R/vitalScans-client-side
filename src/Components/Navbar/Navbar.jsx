@@ -43,11 +43,11 @@ const Navbar = () => {
                     <NavLink to="/login">Login</NavLink>
                 </li>
             )}
-            {user && (
+            {/* {user && (
                 <li>
                     <NavLink to="/appointments">My Appointments</NavLink>
                 </li>
-            )}
+            )} */}
         </>
     );
 

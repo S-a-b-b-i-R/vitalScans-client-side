@@ -25,6 +25,7 @@ import ManageAppointments from "../Pages/Dashboard/ManageAppointments/ManageAppo
 import CreateReport from "../Pages/Dashboard/CreateReport/CreateReport";
 import ShowReport from "../Pages/ShowReport/ShowReport";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import TestResults from "../Pages/Dashboard/TestResults/TestResults";
 
 const Routes = createBrowserRouter([
     {
@@ -84,20 +85,36 @@ const Routes = createBrowserRouter([
                     </PrivateRoutes>
                 ),
             },
-            {
-                path: "/report/:id",
-                element: (
-                    <PrivateRoutes>
-                        <ShowReport />
-                    </PrivateRoutes>
-                ),
-            },
         ],
     },
     {
         path: "/dashboard",
         element: <Dashboard />,
         children: [
+            {
+                path: "updateprofile",
+                element: (
+                    <PrivateRoutes>
+                        <UpdateProfile />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "appointments",
+                element: (
+                    <PrivateRoutes>
+                        <Appointment />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "report/:id",
+                element: (
+                    <PrivateRoutes>
+                        <ShowReport />
+                    </PrivateRoutes>
+                ),
+            },
             {
                 path: "addtest",
                 element: (
@@ -191,6 +208,14 @@ const Routes = createBrowserRouter([
                 element: (
                     <PrivateRoutes>
                         <PaymentHistory />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "testresults",
+                element: (
+                    <PrivateRoutes>
+                        <TestResults />
                     </PrivateRoutes>
                 ),
             },

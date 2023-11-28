@@ -47,15 +47,13 @@ const Appointment = () => {
                                         <td>{item.date.slice(0, 10)}</td>
                                         <td>
                                             {item.status === "pending" ? (
-                                                <span className="text-yellow-400 font-bold">
+                                                <span className="bg-yellow-400 p-2 rounded-md font-bold">
                                                     Pending
                                                 </span>
                                             ) : (
-                                                <Link
-                                                    to={`/report/${item._id}`}
-                                                >
-                                                    <Button text="Report" />
-                                                </Link>
+                                                <span className="bg-green-400 p-2 rounded-md font-bold">
+                                                    Ready
+                                                </span>
                                             )}
                                         </td>
                                     </tr>

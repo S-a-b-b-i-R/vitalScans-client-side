@@ -20,11 +20,13 @@ const CheckoutForm = () => {
     const [booking, isPending, refetch] = useBooking();
     const { user, loading: userLoading } = useAuth();
     const price =
-        booking[0]?.discount > 0
-            ? booking[0].testId.price -
-              (booking[0].testId.price * booking[0].discount) / 100
-            : booking[0]?.testId.price;
-
+        booking[booking.length - 1]?.discount > 0
+            ? booking[booking.length - 1].testId.price -
+              (booking[booking.length - 1].testId.price *
+                  booking[booking.length - 1].discount) /
+                  100
+            : booking[booking.length - 1]?.testId.price;
+    console.log(booking);
     useEffect(() => {
         if (price > 0) {
             axiosSecure
@@ -101,10 +103,10 @@ const CheckoutForm = () => {
                     paymentId: paymentIntent.id,
                     amount: paymentIntent.amount,
                     date: new Date(),
-                    slotId: booking[0].slotId,
-                    testId: booking[0].testId._id,
+                    slotId: booking[booking.length - 1].slotId,
+                    testId: booking[booking.length - 1].testId._id,
                     status: "pending",
-                    bookingId: booking[0]._id,
+                    bookingId: booking[booking.length - 1]._id,
                 };
                 console.log(booking, payment);
                 const res = await axiosSecure.post("/payments", payment);
@@ -126,6 +128,27 @@ const CheckoutForm = () => {
     return (
         <div className="w-2/3 mx-auto">
             <form onSubmit={handleSubmit}>
+                <div>
+                    {/* details of the price and test */}
+                    <div>
+                        <p className="text-lg text-textCol">
+                            <span className="underline">Test Name:</span>{" "}
+                            <span className="font-bold">
+                                {booking[booking.length - 1]?.testId.title}
+                            </span>
+                        </p>
+                        <p className="text-lg text-textCol">
+                            <span className="underline">Discount:</span>{" "}
+                            <span>
+                                {booking[booking.length - 1]?.discount}%
+                            </span>
+                        </p>
+                        <p className="text-lg text-textCol">
+                            <span className="underline">Price:</span>{" "}
+                            <span>${price}</span>
+                        </p>
+                    </div>
+                </div>
                 <CardElement />
                 <div className="flex justify-center">
                     <button
