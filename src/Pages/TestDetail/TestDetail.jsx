@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Container from "../../Components/Container/Container";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
@@ -39,6 +39,7 @@ const TestDetail = () => {
                         icon: "error",
                         title: "Oops...",
                         text: "Invalid coupon code!",
+                        timer: 1500,
                     });
                 }
                 const booking = {
@@ -87,9 +88,21 @@ const TestDetail = () => {
                         <span>{slot.slotNum}</span>
                     </p>
                     {/* <button onClick={handleBookNow}>book now</button> */}
-                    <div onClick={handleBookNow}>
-                        <Button text="Book Now" />
-                    </div>
+                    {slot.slotNum > 0 && (
+                        <div onClick={handleBookNow}>
+                            <Button text="Book Now" />
+                        </div>
+                    )}
+                    {slot.slotNum === 0 && (
+                        <div>
+                            <p>No slots avaialbe</p>
+                            <Link to="/tests">
+                                <button className="btn bg-red-500 text-white hover:bg-red-500">
+                                    Try another slot
+                                </button>
+                            </Link>
+                        </div>
+                    )}
                 </div>
                 <div className="w-1/2">
                     <img

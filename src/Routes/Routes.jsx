@@ -19,11 +19,13 @@ import AddBanner from "../Pages/Dashboard/AddBanner/AddBanner";
 import ManageBanner from "../Pages/Dashboard/ManageBanner/ManageBanner";
 import TestDetail from "../Pages/TestDetail/TestDetail";
 import Payment from "../Pages/Payment/Payment";
+import Error from "../Components/Error/Error";
 
 const Routes = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <Error />,
         children: [
             {
                 path: "/",
