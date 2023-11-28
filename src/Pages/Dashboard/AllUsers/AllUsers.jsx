@@ -98,6 +98,18 @@ const AllUsers = () => {
             }
         });
     };
+    const showModal = (user) => {
+        Swal.fire({
+            title: `${user.name}'s Details`,
+            html: `<p><b>Name:</b> ${user.name}</p>
+            <p><b>Email:</b> ${user.email}</p>
+            <p><b>Role:</b> ${user.role}</p>
+            <p><b>Active:</b> ${user.isActive}</p>
+            <p><b>Blood Group:</b> ${user.bloodGroup}</p>
+            `,
+            confirmButtonText: "Ok",
+        });
+    };
 
     return (
         <div className="px-40">
@@ -112,6 +124,7 @@ const AllUsers = () => {
                             <th>Email</th>
                             <th>Role</th>
                             <th>Block</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,6 +173,14 @@ const AllUsers = () => {
                                             </button>
                                         </>
                                     )}
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn bg-transparent border-black"
+                                        onClick={() => showModal(user)}
+                                    >
+                                        Details
+                                    </button>
                                 </td>
                             </tr>
                         ))}

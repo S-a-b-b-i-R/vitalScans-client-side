@@ -46,14 +46,6 @@ const Routes = createBrowserRouter([
                 element: <SignUp />,
             },
             {
-                path: "/updateprofile",
-                element: (
-                    <PrivateRoutes>
-                        <UpdateProfile />
-                    </PrivateRoutes>
-                ),
-            },
-            {
                 path: "/tests",
                 element: (
                     <PrivateRoutes>
@@ -74,14 +66,6 @@ const Routes = createBrowserRouter([
                 element: (
                     <PrivateRoutes>
                         <Payment />
-                    </PrivateRoutes>
-                ),
-            },
-            {
-                path: "/appointments",
-                element: (
-                    <PrivateRoutes>
-                        <Appointment />
                     </PrivateRoutes>
                 ),
             },

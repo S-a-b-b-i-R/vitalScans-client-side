@@ -26,55 +26,67 @@ const PaymentHistory = () => {
     return (
         <div className="px-40">
             <SectionTitle heading="Payment History" />
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Test</th>
-                            <th>Test Date</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* row 1 */}
-                        {data.map((payment, index) => {
-                            return (
-                                <tr key={payment._id}>
-                                    <td>{index + 1}</td>
-                                    <td>{payment.testId.title}</td>
+            {data.length > 0 ? (
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Test</th>
+                                <th>Test Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* row 1 */}
+                            {data.map((payment, index) => {
+                                return (
+                                    <tr key={payment._id}>
+                                        <td>{index + 1}</td>
+                                        <td>{payment.testId.title}</td>
 
-                                    <td>
-                                        {payment.date.toString().slice(0, 10)}
-                                    </td>
-                                    <td>$ {payment.amount / 100}</td>
-                                    <td>
-                                        {payment.status === "success" ? (
-                                            <span className="bg-green-500 p-2 rounded-md text-white">
-                                                Report Ready
-                                            </span>
-                                        ) : (
-                                            <span className="bg-red-500 p-2 rounded-md text-white">
-                                                Pending
-                                            </span>
-                                        )}
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                    <tfoot>
-                        <tr className="text-black text-md font-bold">
-                            <th></th>
-                            <th></th>
-                            <th>Total Payments: </th>
-                            <td className="font-bold">${total.toFixed(2)}</td>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+                                        <td>
+                                            {payment.date
+                                                .toString()
+                                                .slice(0, 10)}
+                                        </td>
+                                        <td>$ {payment.amount / 100}</td>
+                                        <td>
+                                            {payment.status === "success" ? (
+                                                <span className="bg-green-500 p-2 rounded-md text-white">
+                                                    Report Ready
+                                                </span>
+                                            ) : (
+                                                <span className="bg-red-500 p-2 rounded-md text-white">
+                                                    Pending
+                                                </span>
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                        <tfoot>
+                            <tr className="text-black text-md font-bold">
+                                <th></th>
+                                <th></th>
+                                <th>Total Payments: </th>
+                                <td className="font-bold">
+                                    ${total.toFixed(2)}
+                                </td>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            ) : (
+                <div className="flex justify-center items-center h-96">
+                    <h1 className="text-2xl text-gray-400">
+                        No payment history
+                    </h1>
+                </div>
+            )}
         </div>
     );
 };

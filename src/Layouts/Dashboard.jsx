@@ -6,6 +6,7 @@ import { TbMedicalCross } from "react-icons/tb";
 import { IoCreate } from "react-icons/io5";
 import { GiKnightBanner, GiTatteredBanner } from "react-icons/gi";
 import { PiQueue } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
 import Loading from "../Components/Loading/Loading";
 import useAdmin from "../hooks/useAdmin";
 
@@ -78,19 +79,19 @@ const Dashboard = () => {
                         <>
                             <li>
                                 <NavLink to="/dashboard/updateprofile">
-                                    <FaHome />
+                                    <CgProfile />
                                     My Profile
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/appointments">
-                                    <FaHome />
+                                    <PiQueue />
                                     My Upcoming Appointments
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/testresults">
-                                    <FaHome />
+                                    <FaListUl />
                                     Test Results
                                 </NavLink>
                             </li>

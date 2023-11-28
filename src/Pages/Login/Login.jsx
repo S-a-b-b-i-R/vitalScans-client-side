@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+// import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
-import {
-    loadCaptchaEnginge,
-    LoadCanvasTemplate,
-    validateCaptcha,
-} from "react-simple-captcha";
+// import {
+//     loadCaptchaEnginge,
+//     LoadCanvasTemplate,
+//     validateCaptcha,
+// } from "react-simple-captcha";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
@@ -13,60 +13,59 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const state = location.state || "/";
-    const captchaRef = useRef(null);
+    const state = location.state || "/dashboard";
+    // const captchaRef = useRef(null);
     const { login } = useAuth();
-    const [disabled, setDisabled] = useState(true);
+    // const [disabled, setDisabled] = useState(true);
 
-    useEffect(() => {
-        loadCaptchaEnginge(5);
-    }, []);
+    // useEffect(() => {
+    //     loadCaptchaEnginge(5);
+    // }, []);
 
-    const handleValidateCaptcha = (e) => {
-        e.preventDefault();
-        const captcha = captchaRef.current.value;
-        console.log(captcha);
-        const result = validateCaptcha(captcha);
-        if (result) {
-            setDisabled(false);
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Invalid Captcha",
-                showConfirmButton: false,
-                timer: 1000,
-            });
-            captchaRef.current.value = "";
-            setDisabled(true);
-        }
-    };
+    // const handleValidateCaptcha = (e) => {
+    //     e.preventDefault();
+    //     const captcha = captchaRef.current.value;
+    //     console.log(captcha);
+    //     const result = validateCaptcha(captcha);
+    //     if (result) {
+    //         setDisabled(false);
+    //     } else {
+    //         Swal.fire({
+    //             icon: "error",
+    //             title: "Oops...",
+    //             text: "Invalid Captcha",
+    //             showConfirmButton: false,
+    //             timer: 1000,
+    //         });
+    //         captchaRef.current.value = "";
+    //         setDisabled(true);
+    //     }
+    // };
 
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        if (!disabled) {
-            login(email, password)
-                .then((result) => {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Logged In!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    navigate(state);
-                })
-                .catch((error) => {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: error.message,
-                    });
-                    setDisabled(true);
+
+        login(email, password)
+            .then((result) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Logged In!",
+                    showConfirmButton: false,
+                    timer: 1500,
                 });
-        }
+                navigate(state);
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: error.message,
+                });
+                // setDisabled(true);
+            });
     };
     return (
         <div>
@@ -111,7 +110,7 @@ const Login = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-control">
+                            {/* <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Captcha</span>
                                 </label>
@@ -131,10 +130,10 @@ const Login = () => {
                                 >
                                     Validate
                                 </button>
-                            </div>
+                            </div> */}
                             <div className="form-control mt-6">
                                 <button
-                                    disabled={disabled}
+                                    // disabled={disabled}
                                     type="submit"
                                     className="btn btn-primary"
                                 >

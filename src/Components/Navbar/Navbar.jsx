@@ -34,20 +34,11 @@ const Navbar = () => {
             <li>
                 <NavLink to="/services">Services</NavLink>
             </li>
-            {user ? (
+            {user && (
                 <li>
                     <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
-            ) : (
-                <li>
-                    <NavLink to="/login">Login</NavLink>
-                </li>
             )}
-            {/* {user && (
-                <li>
-                    <NavLink to="/appointments">My Appointments</NavLink>
-                </li>
-            )} */}
         </>
     );
 
@@ -132,14 +123,14 @@ const Navbar = () => {
                                     Logout
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link
                                     to="/updateprofile"
                                     className="btn btn-ghost btn-sm rounded-btn normal-case"
                                 >
                                     Update Profile
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </details>
                 ) : (

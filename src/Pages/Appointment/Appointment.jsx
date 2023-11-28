@@ -4,13 +4,15 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Components/Loading/Loading";
 import Container from "../../Components/Container/Container";
-import { Link } from "react-router-dom";
-import Button from "../../Components/Button/Button";
 
 const Appointment = () => {
     const axiosSecure = useAxiosSecure();
     const { user, loading } = useAuth();
-    const { data: appointmentData, isPending: appointmentLoading } = useQuery({
+    const {
+        data: appointmentData,
+        isPending: appointmentLoading,
+        isFetched,
+    } = useQuery({
         queryKey: ["payments", user.email],
         enabled: !!user.email,
         queryFn: async () => {
@@ -19,7 +21,7 @@ const Appointment = () => {
         },
     });
 
-    if (appointmentLoading || loading) return <Loading />;
+    if (appointmentLoading || loading || !isFetched) return <Loading />;
     console.log(appointmentData);
     return (
         <div>

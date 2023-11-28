@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { Helmet } from "react-helmet-async";
 
+const image_hositng_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hositng_key}`;
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
@@ -16,7 +18,7 @@ const SignUp = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.password !== data.password2) {
             Swal.fire({
                 icon: "error",
@@ -26,40 +28,48 @@ const SignUp = () => {
             });
             return;
         }
-        createUser(data.email, data.password)
-            .then((result) => {
-                updateUserProfile(data.name, data.url)
-                    .then(() => {
-                        //create user in database
-                        const userInfo = {
-                            name: data.name,
-                            email: data.email,
-                        };
-                        axiosPublic
-                            .post("/users", userInfo)
-                            .then((result) => {
-                                // console.log(result);
-                                if (result.status === 200) {
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "Signed Up!",
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    });
-                                    navigate("/updateprofile");
-                                }
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        const imageFile = { image: data.image[0] };
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        });
+        if (res.data.success) {
+            createUser(data.email, data.password)
+                .then((result) => {
+                    updateUserProfile(data.name, res.data.data.display_url)
+                        .then(() => {
+                            //create user in database
+                            const userInfo = {
+                                name: data.name,
+                                email: data.email,
+                            };
+                            axiosPublic
+                                .post("/users", userInfo)
+                                .then((result) => {
+                                    // console.log(result);
+                                    if (result.status === 200) {
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Signed Up!",
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        });
+                                        navigate("/dashboard/updateprofile");
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     return (
@@ -104,21 +114,14 @@ const SignUp = () => {
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">
-                                        Photo URL
+                                        Banner Image
                                     </span>
                                 </label>
                                 <input
-                                    type="url"
-                                    placeholder="photo url"
-                                    name="name"
-                                    {...register("url", { required: true })}
-                                    className="input input-bordered"
+                                    {...register("image", { required: true })}
+                                    type="file"
+                                    className="file-input w-full max-w-xs"
                                 />
-                                {errors.url && (
-                                    <span className="text-red-700">
-                                        Url is required
-                                    </span>
-                                )}
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -208,7 +211,7 @@ const SignUp = () => {
                         <div className="px-8 mb-5">
                             <SocialLogin />
                             <p className="text-center">
-                                Already have ana ccount?{" "}
+                                Already have an ccount?{" "}
                                 <Link className="text-blue-400" to="/login">
                                     Login
                                 </Link>
