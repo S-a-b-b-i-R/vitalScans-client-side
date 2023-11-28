@@ -1,0 +1,13 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination .selected {
+    background: #63b9ff;
+    color: white;
+    border-radius: 4px;
+}

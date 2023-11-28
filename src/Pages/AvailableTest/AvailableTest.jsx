@@ -7,8 +7,11 @@ import Loading from "../../Components/Loading/Loading";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./AvailableTest.css";
 
 const AvailableTest = () => {
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
     const axiosPublic = useAxiosPublic();
     const [startDate, setStartDate] = useState(
         new Date().toISOString().slice(0, 10)
@@ -21,19 +24,43 @@ const AvailableTest = () => {
         isPending: slotLoading,
         refetch,
     } = useQuery({
-        queryKey: ["slots"],
+        queryKey: ["slots", itemsPerPage, currentPage],
         queryFn: async () => {
-            console.log(startDate, endDate);
-            const res = await axiosPublic.get(`/slots/${startDate}/${endDate}`);
+            const res = await axiosPublic.get(
+                `/slots/${startDate}/${endDate}?page=${currentPage}&limit=${itemsPerPage}`
+            );
             return res.data.slots;
         },
     });
-    if (slotLoading) return <Loading />;
+    const { data: slotCount, isPending: slotCountLoading } = useQuery({
+        queryKey: ["slotsCount"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(
+                `/slotnum/${startDate}/${endDate}`
+            );
+            return res.data.slotNumber;
+        },
+    });
+    if (slotLoading || slotCountLoading) return <Loading />;
+    console.log(slotCount, itemsPerPage);
+    const numberofPages = Math.ceil(slotCount / itemsPerPage);
+    const pages = [...Array(numberofPages).keys()];
+    console.log(pages);
 
+    const handleItemsPerPage = (e) => {
+        setItemsPerPage(parseInt(e.target.value));
+        setCurrentPage(0);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
+    const handleNextpage = () => {
+        setCurrentPage(currentPage + 1);
+    };
     const handleSearch = async (e) => {
         e.preventDefault();
-        //date validation
-        //start date cant be past dates and end date cant be before start date
         if (startDate > endDate) {
             Swal.fire({
                 icon: "error",
@@ -103,7 +130,9 @@ const AvailableTest = () => {
                         <tbody>
                             {slotData.map((item, index) => (
                                 <tr key={item._id}>
-                                    <td>{index + 1}</td>
+                                    <td>
+                                        {index + 1 + currentPage * itemsPerPage}
+                                    </td>
                                     <td>{item.testId.title}</td>
                                     <td>{item.testId.details}</td>
                                     <td>${item.testId.price}</td>
@@ -118,6 +147,47 @@ const AvailableTest = () => {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div className="pagination">
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 0}
+                        className="bg-mainCol p-2 rounded-md"
+                    >
+                        Previous
+                    </button>
+                    {pages.map((page) => (
+                        <button
+                            className={
+                                currentPage === page
+                                    ? "selected p-2"
+                                    : "bg-gray-300 p-2"
+                            }
+                            onClick={() => setCurrentPage(page)}
+                            key={page}
+                        >
+                            {page + 1}
+                        </button>
+                    ))}
+                    <button
+                        onClick={handleNextpage}
+                        disabled={currentPage === pages[pages.length - 1]}
+                        className="bg-mainCol p-2 rounded-md"
+                    >
+                        Next
+                    </button>
+                    <div className="flex items-center">
+                        <select
+                            value={itemsPerPage}
+                            onChange={handleItemsPerPage}
+                            className="w-52"
+                        >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
                 </div>
             </Container>
         </div>
