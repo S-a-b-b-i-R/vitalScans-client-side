@@ -20,6 +20,7 @@ import ManageBanner from "../Pages/Dashboard/ManageBanner/ManageBanner";
 import TestDetail from "../Pages/TestDetail/TestDetail";
 import Payment from "../Pages/Payment/Payment";
 import Error from "../Components/Error/Error";
+import Appointment from "../Pages/Appointment/Appointment";
 
 const Routes = createBrowserRouter([
     {
@@ -68,6 +69,14 @@ const Routes = createBrowserRouter([
                 element: (
                     <PrivateRoutes>
                         <Payment />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/appointments",
+                element: (
+                    <PrivateRoutes>
+                        <Appointment />
                     </PrivateRoutes>
                 ),
             },
