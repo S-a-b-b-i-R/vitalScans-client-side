@@ -3,6 +3,7 @@ import Container from "../Container/Container";
 import Button from "../Button/Button";
 import useActiveBanner from "../../hooks/useActiveBanner";
 import Loading from "../Loading/Loading";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     const { activeBanner, activeBannerLoading } = useActiveBanner();
@@ -10,10 +11,10 @@ const Banner = () => {
     return (
         <div>
             <Container>
-                <div className="bg-base-100 flex justify-between items-center text-textCol">
-                    <div className="w-1/2 text-left">
-                        <div className="max-w-md">
-                            <h1 className="mb-5 text-5xl font-bold">
+                <div className="flex flex-col lg:flex-row justify-between items-center text-textCol">
+                    <div className="w-full lg:w-1/2 text-center lg:text-left">
+                        <div>
+                            <h1 className="mb-5 text-2xl font-bold">
                                 {activeBanner.title}
                             </h1>
                             <p className="mb-5">{activeBanner.description}</p>
@@ -70,10 +71,12 @@ const Banner = () => {
                                     Walk-Ins Welcome!
                                 </p>
                             </Marquee>
-                            <Button text="All Tests" />
+                            <Link to="/tests">
+                                <Button text="All Tests" />
+                            </Link>
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="lg:w-1/2">
                         <img
                             className="w-full object-cover"
                             src={activeBanner.image}

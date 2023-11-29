@@ -34,6 +34,9 @@ const Navbar = () => {
             <li>
                 <NavLink to="/services">Services</NavLink>
             </li>
+            <li>
+                <NavLink to="/about">About Us</NavLink>
+            </li>
             {user && (
                 <li>
                     <NavLink to="/dashboard">Dashboard</NavLink>
@@ -80,11 +83,13 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <img
-                    className="w-40"
-                    src="https://i.ibb.co/L5Wm6jk/logo.png"
-                    alt=""
-                />
+                <Link to="/">
+                    <img
+                        className="w-20 lg:w-40"
+                        src="https://i.ibb.co/L5Wm6jk/logo.png"
+                        alt=""
+                    />
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-textCol font-bold gap-2">

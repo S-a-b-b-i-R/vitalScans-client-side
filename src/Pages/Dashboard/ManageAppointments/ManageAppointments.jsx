@@ -46,7 +46,7 @@ const ManageAppointments = () => {
                             <th>Patient Name</th>
                             <th>Patient Email</th>
                             <th>Date</th>
-                            <th>Status</th>
+                            <th>Report</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>

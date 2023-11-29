@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import Button from "../../Components/Button/Button";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -74,7 +75,7 @@ const Login = () => {
             </Helmet>
             <div className="hero bg-base-100 text-textCol">
                 <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center lg:text-left">
+                    <div className="text-center lg:text-left hidden lg:block">
                         <img
                             className="object-cover h-[500px]"
                             src="https://i.ibb.co/cvQ5w04/login-Page.png"
@@ -110,35 +111,8 @@ const Login = () => {
                                     required
                                 />
                             </div>
-                            {/* <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Captcha</span>
-                                </label>
-                                <LoadCanvasTemplate />
-                                <input
-                                    ref={captchaRef}
-                                    // onBlur={handleValidateCaptcha}
-                                    type="text"
-                                    placeholder="type the letters above here"
-                                    name="captcha"
-                                    className="input input-bordered"
-                                    required
-                                />
-                                <button
-                                    className="btn btn-outline btn-xs"
-                                    onClick={handleValidateCaptcha}
-                                >
-                                    Validate
-                                </button>
-                            </div> */}
                             <div className="form-control mt-6">
-                                <button
-                                    // disabled={disabled}
-                                    type="submit"
-                                    className="btn btn-primary"
-                                >
-                                    Login
-                                </button>
+                                <Button text="Login" type="submit" />
                             </div>
                         </form>
                         <div className="divider"></div>

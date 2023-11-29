@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./AvailableTest.css";
+import { Helmet } from "react-helmet-async";
 
 const AvailableTest = () => {
     const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -82,6 +83,9 @@ const AvailableTest = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>vitalScans | All Tests</title>
+            </Helmet>
             <SectionTitle heading="Available Test" />
             <Container>
                 <form onSubmit={handleSearch}>
@@ -180,7 +184,7 @@ const AvailableTest = () => {
                         <select
                             value={itemsPerPage}
                             onChange={handleItemsPerPage}
-                            className="w-52 border-2 p-1"
+                            className="w-32 lg:w-52 border-2 p-1"
                         >
                             <option value="5">5</option>
                             <option value="10">10</option>

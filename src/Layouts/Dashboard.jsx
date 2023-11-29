@@ -9,13 +9,16 @@ import { PiQueue } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import Loading from "../Components/Loading/Loading";
 import useAdmin from "../hooks/useAdmin";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
     const [isAdmin, isAdminLoading] = useAdmin();
     if (isAdminLoading) return <Loading />;
     return (
         <div className="flex min-h-screen">
-            {/* dashboard side-bar */}
+            <Helmet>
+                <title>vitalScans | Dashboard</title>
+            </Helmet>
             <div className="w-1/4 min-h-full bg-orange-100">
                 <ul className="menu p-4">
                     {isAdmin ? (

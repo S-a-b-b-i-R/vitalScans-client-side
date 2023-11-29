@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { Helmet } from "react-helmet-async";
+import Button from "../../Components/Button/Button";
 
 const image_hositng_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hositng_key}`;
@@ -79,7 +80,7 @@ const SignUp = () => {
             </Helmet>
             <div className="hero bg-base-100">
                 <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center lg:text-left">
+                    <div className="text-center lg:text-left hidden lg:block">
                         <img
                             className="object-cover h-[500px]"
                             src="https://i.ibb.co/cvQ5w04/login-Page.png"
@@ -114,7 +115,7 @@ const SignUp = () => {
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">
-                                        Banner Image
+                                        Profile Photo
                                     </span>
                                 </label>
                                 <input
@@ -200,12 +201,7 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="form-control mt-6">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                >
-                                    Sign Up
-                                </button>
+                                <Button text="Sign Up" type="submit" />
                             </div>
                         </form>
                         <div className="px-8 mb-5">

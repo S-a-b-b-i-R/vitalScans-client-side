@@ -11,7 +11,7 @@ const Promotion = () => {
     return (
         <Container>
             <div className="space-y-6 my-6">
-                <h1 className="text-center text-5xl font-bold text-textCol">
+                <h1 className="text-center text-2xl lg:text-5xl font-bold text-textCol">
                     Recommendations
                 </h1>
                 <div className="divider w-1/3 mx-auto"></div>
@@ -23,7 +23,7 @@ const Promotion = () => {
                     interval={3000}
                 >
                     {promos?.map((promo) => (
-                        <div key={promo._id}>
+                        <div key={promo._id} className="bg-base-100 rounded-md">
                             <div className="space-y-4 bg-base-200 p-2 rounded-md">
                                 <p className="text-2xl">
                                     <b>{promo.title}</b>

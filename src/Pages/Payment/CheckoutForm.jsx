@@ -131,19 +131,25 @@ const CheckoutForm = () => {
                 <div>
                     {/* details of the price and test */}
                     <div>
-                        <p className="text-lg text-textCol">
+                        <p className="text-lg text-textCol border-2 p-1">
                             <span className="underline">Test Name:</span>{" "}
                             <span className="font-bold">
                                 {booking[booking.length - 1]?.testId.title}
                             </span>
                         </p>
-                        <p className="text-lg text-textCol">
+                        <p className="text-lg text-textCol border-2 p-1">
+                            <span className="underline">Test Price:</span>{" "}
+                            <span>
+                                ${booking[booking.length - 1]?.testId.price}
+                            </span>
+                        </p>
+                        <p className="text-lg text-textCol border-2 p-1">
                             <span className="underline">Discount:</span>{" "}
                             <span>
                                 {booking[booking.length - 1]?.discount}%
                             </span>
                         </p>
-                        <p className="text-lg text-textCol">
+                        <p className="text-lg text-textCol border-2 p-1">
                             <span className="underline">Price:</span>{" "}
                             <span>${price}</span>
                         </p>

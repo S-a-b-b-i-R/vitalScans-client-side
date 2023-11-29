@@ -5,7 +5,7 @@ import Footer from "../Components/Footer/Footer";
 
 const MainLayout = () => {
     return (
-        <div className="space-y-10">
+        <div className="space-y-10 bg-backImg bg-fixed bg-cover">
             <Container>
                 <Navbar />
             </Container>
