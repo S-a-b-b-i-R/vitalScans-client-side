@@ -24,7 +24,7 @@ const Promotion = () => {
                 >
                     {promos?.map((promo) => (
                         <div key={promo._id}>
-                            <div className="space-y-4 bg-base-200 p-2">
+                            <div className="space-y-4 bg-base-200 p-2 rounded-md">
                                 <p className="text-2xl">
                                     <b>{promo.title}</b>
                                 </p>
@@ -33,7 +33,7 @@ const Promotion = () => {
                             <img
                                 src={promo.imageUrl}
                                 alt="promo"
-                                className="object-center w-full h-[600px]"
+                                className="object-contain h-[400px]"
                             />
                         </div>
                     ))}

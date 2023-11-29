@@ -26,6 +26,7 @@ import CreateReport from "../Pages/Dashboard/CreateReport/CreateReport";
 import ShowReport from "../Pages/ShowReport/ShowReport";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import TestResults from "../Pages/Dashboard/TestResults/TestResults";
+import Services from "../Pages/Services/Services";
 
 const Routes = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/signup",
                 element: <SignUp />,
+            },
+            {
+                path: "/services",
+                element: <Services />,
             },
             {
                 path: "/tests",
