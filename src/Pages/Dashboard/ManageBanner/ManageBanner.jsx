@@ -21,9 +21,7 @@ const ManageBanner = () => {
     if (loading) {
         return <Loading />;
     }
-    console.log(bannerData);
     const handleSetActive = async (id) => {
-        console.log(id);
         const res = await axiosSecure.patch(`/banners/${id}`);
         if (res.status === 200) {
             Swal.fire({

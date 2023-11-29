@@ -7,7 +7,6 @@ import { GrUpdate } from "react-icons/gr";
 const ManageSlot = () => {
     const { slotData, slotLoading } = useSlot();
     if (slotLoading) return <Loading />;
-    console.log(slotData);
     return (
         <div className="px-40">
             <SectionTitle heading="Manage Slots" />

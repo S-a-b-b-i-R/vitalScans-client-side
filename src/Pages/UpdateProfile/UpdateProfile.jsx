@@ -39,7 +39,6 @@ const UpdateProfile = () => {
     });
     if (zillaLoading || upazillaLoading || loading || userDataLoading)
         return <Loading />;
-    console.log(userData);
     const handleUpdateProfile = async (e) => {
         let photoURL = "";
         e.preventDefault();
@@ -50,7 +49,6 @@ const UpdateProfile = () => {
                     "content-type": "multipart/form-data",
                 },
             });
-            console.log(res);
             if (res.data.success) {
                 photoURL = res.data.data.display_url;
             }
@@ -69,15 +67,10 @@ const UpdateProfile = () => {
             zilla_id,
             upazilla_id,
         };
-        console.log(data, user.displayName, user.photoURL);
         if (user.displayName !== name || user.photoURL !== photo) {
             updateUserProfile(name, photo)
-                .then(() => {
-                    console.log("Profile Updated");
-                })
-                .catch((error) => {
-                    console.log(error.message);
-                });
+                .then(() => {})
+                .catch((error) => {});
         }
         try {
             const res = await axiosSecure.put(`/users`, data);
@@ -152,7 +145,6 @@ const UpdateProfile = () => {
                                     }
                                     onChange={(e) => {
                                         setBloodGroup(e.target.value);
-                                        console.log(bloodGroup);
                                     }}
                                 >
                                     <option disabled>Select Blood Group</option>
@@ -231,7 +223,6 @@ const UpdateProfile = () => {
                                 <input
                                     type="file"
                                     onChange={(e) => {
-                                        console.log(e.target.files);
                                         setFile(e.target.files[0]);
                                     }}
                                     className="file-input file-input-bordered w-full max-w-xs"

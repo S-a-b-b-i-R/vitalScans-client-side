@@ -26,7 +26,6 @@ const CheckoutForm = () => {
                   booking[booking.length - 1].discount) /
                   100
             : booking[booking.length - 1]?.testId.price;
-    console.log(booking);
     useEffect(() => {
         if (price > 0) {
             axiosSecure
@@ -66,7 +65,6 @@ const CheckoutForm = () => {
                 timer: 1500,
             });
         } else {
-            console.log("[PaymentMethod]", paymentMethod);
             setError("");
         }
 
@@ -81,7 +79,6 @@ const CheckoutForm = () => {
                 },
             });
         if (confirmError) {
-            console.log(confirmError);
             setError(confirmError.message);
             setTransactionId("");
             Swal.fire({
@@ -92,7 +89,6 @@ const CheckoutForm = () => {
                 timer: 1500,
             });
         } else {
-            console.log(paymentIntent);
             setError("");
             setLoading(false);
             if (paymentIntent.status === "succeeded") {
@@ -108,9 +104,7 @@ const CheckoutForm = () => {
                     status: "pending",
                     bookingId: booking[booking.length - 1]._id,
                 };
-                console.log(booking, payment);
                 const res = await axiosSecure.post("/payments", payment);
-                console.log(res);
                 refetch();
                 Swal.fire({
                     icon: "success",

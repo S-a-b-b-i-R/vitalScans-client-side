@@ -10,7 +10,6 @@ const Navbar = () => {
     const handleLogout = () => {
         logout()
             .then(() => {
-                console.log("logged out");
                 Swal.fire({
                     icon: "success",
                     title: "Logged out!",
@@ -18,9 +17,7 @@ const Navbar = () => {
                     timer: 1500,
                 });
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch((err) => {});
     };
 
     const navLinks = (

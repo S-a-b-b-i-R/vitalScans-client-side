@@ -43,10 +43,8 @@ const AvailableTest = () => {
         },
     });
     if (slotLoading || slotCountLoading) return <Loading />;
-    console.log(slotCount, itemsPerPage);
     const numberofPages = Math.ceil(slotCount / itemsPerPage);
     const pages = [...Array(numberofPages).keys()];
-    console.log(pages);
 
     const handleItemsPerPage = (e) => {
         setItemsPerPage(parseInt(e.target.value));
@@ -77,7 +75,6 @@ const AvailableTest = () => {
             });
             return;
         }
-        console.log(startDate, endDate);
         refetch();
     };
 

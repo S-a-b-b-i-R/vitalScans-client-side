@@ -61,7 +61,6 @@ const AdminHome = () => {
         width: PropTypes.number,
         height: PropTypes.number,
     };
-    console.log(stats);
     return (
         <div className="space-y-10 p-20">
             <div className="flex justify-center gap-5">

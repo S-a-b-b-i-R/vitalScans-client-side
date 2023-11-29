@@ -65,7 +65,6 @@ const TestDetail = () => {
                     slotId: slot._id,
                     discount: result.data.discount,
                 };
-                console.log(booking);
                 const res = await axiosSecure.post("/bookings", booking);
                 if (res.status === 200) {
                     Swal.fire({

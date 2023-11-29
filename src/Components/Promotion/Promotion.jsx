@@ -7,7 +7,6 @@ import { Carousel } from "react-responsive-carousel";
 const Promotion = () => {
     const { promos, promoLoading } = usePromo();
     if (promoLoading) return <Loading />;
-    console.log(promos);
     return (
         <Container>
             <div className="space-y-6 my-6">

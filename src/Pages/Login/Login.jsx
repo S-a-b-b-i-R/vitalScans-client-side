@@ -15,33 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const state = location.state || "/dashboard";
-    // const captchaRef = useRef(null);
     const { login } = useAuth();
-    // const [disabled, setDisabled] = useState(true);
-
-    // useEffect(() => {
-    //     loadCaptchaEnginge(5);
-    // }, []);
-
-    // const handleValidateCaptcha = (e) => {
-    //     e.preventDefault();
-    //     const captcha = captchaRef.current.value;
-    //     console.log(captcha);
-    //     const result = validateCaptcha(captcha);
-    //     if (result) {
-    //         setDisabled(false);
-    //     } else {
-    //         Swal.fire({
-    //             icon: "error",
-    //             title: "Oops...",
-    //             text: "Invalid Captcha",
-    //             showConfirmButton: false,
-    //             timer: 1000,
-    //         });
-    //         captchaRef.current.value = "";
-    //         setDisabled(true);
-    //     }
-    // };
 
     const handleLogin = (e) => {
         e.preventDefault();

@@ -60,7 +60,6 @@ const ManageTest = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/tests/${item._id}`);
-                console.log(res.data);
                 if (res.status === 200) {
                     Swal.fire({
                         icon: "success",

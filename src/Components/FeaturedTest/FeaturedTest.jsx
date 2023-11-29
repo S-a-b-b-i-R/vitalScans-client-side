@@ -16,7 +16,6 @@ const FeaturedTest = () => {
 
     if (slotLoading) return <Loading />;
 
-    console.log(slotData);
     return (
         <Container>
             <div className="space-y-6 my-6">

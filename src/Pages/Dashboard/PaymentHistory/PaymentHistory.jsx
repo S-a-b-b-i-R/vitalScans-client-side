@@ -22,7 +22,6 @@ const PaymentHistory = () => {
     const total = data.reduce((sum, payment) => {
         return sum + payment.amount / 100;
     }, 0);
-    console.log(data, total);
     return (
         <div className="px-40">
             <SectionTitle heading="Payment History" />

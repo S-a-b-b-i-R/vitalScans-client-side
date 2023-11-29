@@ -34,7 +34,6 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/users/admin/${id}`).then((res) => {
-                    console.log(res);
                     if (res.status === 200) {
                         Swal.fire({
                             icon: "success",
@@ -59,7 +58,6 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/users/block/${id}`).then((res) => {
-                    console.log(res);
                     if (res.status === 200) {
                         Swal.fire({
                             icon: "success",
@@ -84,7 +82,6 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/users/block/${id}`).then((res) => {
-                    console.log(res);
                     if (res.status === 200) {
                         Swal.fire({
                             icon: "success",

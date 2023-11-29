@@ -32,9 +32,6 @@ const CreateReport = () => {
 
     if (paymentLoading || userLoading) return <Loading />;
 
-    console.log(paymentData);
-    console.log(userData);
-
     const onSubmit = async (data) => {
         const report = {
             paymentId: paymentData._id,

@@ -48,7 +48,6 @@ const SignUp = () => {
                             axiosPublic
                                 .post("/users", userInfo)
                                 .then((result) => {
-                                    // console.log(result);
                                     if (result.status === 200) {
                                         Swal.fire({
                                             icon: "success",
@@ -59,17 +58,11 @@ const SignUp = () => {
                                         navigate("/dashboard/updateprofile");
                                     }
                                 })
-                                .catch((error) => {
-                                    console.log(error);
-                                });
+                                .catch((error) => {});
                         })
-                        .catch((error) => {
-                            console.log(error.message);
-                        });
+                        .catch((error) => {});
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch((error) => {});
         }
     };
 

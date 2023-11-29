@@ -28,7 +28,6 @@ const AddBanner = () => {
                 discount: parseInt(data.discount),
             };
             const respons = await axiosSecure.post("/banners", banner);
-            console.log(respons);
             if (respons.status === 200) {
                 Swal.fire({
                     icon: "success",
@@ -39,7 +38,6 @@ const AddBanner = () => {
                 reset();
             }
         }
-        console.log(res.data);
     };
     return (
         <div className="px-40">

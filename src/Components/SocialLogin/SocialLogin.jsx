@@ -14,7 +14,6 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
-                console.log(result.user);
                 Swal.fire({
                     icon: "success",
                     title: "Logged In!",
@@ -27,20 +26,11 @@ const SocialLogin = () => {
                         name: result.user.displayName,
                         email: result.user.email,
                     })
-                    .then((result) => {
-                        console.log(result);
-                        if (result.data.acknowledged) {
-                            console.log("User Created");
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                    .then((result) => {})
+                    .catch((error) => {});
                 navigate(state);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     };
 
     return (
