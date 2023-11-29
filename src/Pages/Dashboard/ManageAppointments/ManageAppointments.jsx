@@ -3,11 +3,36 @@ import Loading from "../../../Components/Loading/Loading";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import usePayment from "../../../hooks/usePayment";
 import { GrUpdate } from "react-icons/gr";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageAppointments = () => {
-    const { paymentData, paymentLoading } = usePayment();
+    const axiosSecure = useAxiosSecure();
+    const { paymentData, paymentLoading, paymentRefetch } = usePayment();
+
     if (paymentLoading) return <Loading />;
-    console.log(paymentData);
+
+    const handleCancel = async (id) => {
+        try {
+            const res = await axiosSecure.patch(`/payments/${id}`);
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Appointment cancelled",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+            paymentRefetch();
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Test already conducted!",
+            });
+        }
+    };
+
     return (
         <div className="px-40">
             <SectionTitle heading="Manage Appointments" />
@@ -22,6 +47,7 @@ const ManageAppointments = () => {
                             <th>Patient Email</th>
                             <th>Date</th>
                             <th>Status</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +71,14 @@ const ManageAppointments = () => {
                                     ) : (
                                         <span>Ready</span>
                                     )}
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn bg-transparent border-black"
+                                        onClick={() => handleCancel(item._id)}
+                                    >
+                                        Cancel
+                                    </button>
                                 </td>
                             </tr>
                         ))}
