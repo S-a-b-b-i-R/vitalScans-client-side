@@ -28,6 +28,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import TestResults from "../Pages/Dashboard/TestResults/TestResults";
 import Services from "../Pages/Services/Services";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 
 const Routes = createBrowserRouter([
     {
@@ -85,6 +86,14 @@ const Routes = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard />,
         children: [
+            {
+                path: "adminhome",
+                element: (
+                    <PrivateRoutes>
+                        <AdminHome />
+                    </PrivateRoutes>
+                ),
+            },
             {
                 path: "updateprofile",
                 element: (

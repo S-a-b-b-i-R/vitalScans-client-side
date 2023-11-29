@@ -5,10 +5,21 @@ import usePayment from "../../../hooks/usePayment";
 import { GrUpdate } from "react-icons/gr";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const ManageAppointments = () => {
+    const [searchString, setSearchString] = useState("");
     const axiosSecure = useAxiosSecure();
     const { paymentData, paymentLoading, paymentRefetch } = usePayment();
+
+    const { data, isPending } = useQuery({
+        queryKey: ["payments"],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/payments/${searchString}`);
+            return res.data.payment;
+        },
+    });
 
     if (paymentLoading) return <Loading />;
 
@@ -37,6 +48,16 @@ const ManageAppointments = () => {
         <div className="px-40">
             <SectionTitle heading="Manage Appointments" />
             <div className="overflow-x-auto">
+                <div className="join">
+                    <input
+                        className="input input-bordered join-item"
+                        placeholder="Email"
+                        name="searchField"
+                    />
+                    <button className="btn join-item rounded-r-full">
+                        Search
+                    </button>
+                </div>
                 <table className="table">
                     {/* head */}
                     <thead>
