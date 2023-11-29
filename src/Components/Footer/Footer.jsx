@@ -8,6 +8,13 @@ const Footer = () => {
                 <a className="link link-hover">Press kit</a>
             </nav>
             <nav>
+                <div>
+                    <img
+                        className="h-20"
+                        src="https://i.ibb.co/L5Wm6jk/logo.png"
+                        alt=""
+                    />
+                </div>
                 <div className="grid grid-flow-col gap-4">
                     <a>
                         <svg
@@ -45,9 +52,7 @@ const Footer = () => {
                 </div>
             </nav>
             <aside>
-                <p>
-                    Copyright © 2023 - All right reserved by ACME Industries Ltd
-                </p>
+                <p>Copyright © 2023 - All right reserved by vitalScans</p>
             </aside>
         </footer>
     );

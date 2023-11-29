@@ -81,8 +81,8 @@ const TestDetail = () => {
     return (
         <Container>
             <SectionTitle heading="Test Detail" />
-            <div className="flex items-center">
-                <div className="w-1/2 space-y-4">
+            <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 space-y-4 text-center md:text-left">
                     <h1 className="text-2xl text-textCol">
                         Test Name:{" "}
                         <span className="font-bold">{slot.testId.title}</span>
@@ -120,7 +120,7 @@ const TestDetail = () => {
                         </div>
                     )}
                 </div>
-                <div className="w-1/2">
+                <div className="w-full md:w-1/2">
                     <img
                         src="https://i.ibb.co/DM0xCBV/test-detail-removebg-preview.png"
                         alt=""

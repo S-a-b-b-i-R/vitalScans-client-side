@@ -126,7 +126,7 @@ const CheckoutForm = () => {
         }
     };
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-full md:w-2/3 md:mx-auto">
             <form onSubmit={handleSubmit}>
                 <div>
                     {/* details of the price and test */}

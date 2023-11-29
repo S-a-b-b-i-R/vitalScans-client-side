@@ -6,7 +6,7 @@ import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 const Payment = () => {
     const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
     return (
-        <div className="px-64">
+        <div className="md:px-64">
             <SectionTitle heading="Payment" />
             <div className="px-10">
                 <Elements stripe={stripePromise}>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Components/Loading/Loading";
 import Container from "../../Components/Container/Container";
+import Swal from "sweetalert2";
 
 const Appointment = () => {
     const axiosSecure = useAxiosSecure();
@@ -12,6 +13,7 @@ const Appointment = () => {
         data: appointmentData,
         isPending: appointmentLoading,
         isFetched,
+        refetch,
     } = useQuery({
         queryKey: ["payments", user.email],
         enabled: !!user.email,
@@ -22,7 +24,26 @@ const Appointment = () => {
     });
 
     if (appointmentLoading || loading || !isFetched) return <Loading />;
-    console.log(appointmentData);
+    const handleCancel = async (id) => {
+        try {
+            const res = await axiosSecure.patch(`/payments/${id}`);
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Appointment cancelled",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+            refetch();
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Test already conducted!",
+            });
+        }
+    };
     return (
         <div>
             <Container>
@@ -37,6 +58,7 @@ const Appointment = () => {
                                     <th>Test</th>
                                     <th>Date</th>
                                     <th>Results</th>
+                                    <th>Cancel</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +79,16 @@ const Appointment = () => {
                                                     Ready
                                                 </span>
                                             )}
+                                        </td>
+                                        <td>
+                                            <button
+                                                className="btn bg-transparent border-black"
+                                                onClick={() =>
+                                                    handleCancel(item._id)
+                                                }
+                                            >
+                                                Cancel
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

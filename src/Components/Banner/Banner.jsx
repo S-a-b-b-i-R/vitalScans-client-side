@@ -14,7 +14,7 @@ const Banner = () => {
                 <div className="flex flex-col lg:flex-row justify-between items-center text-textCol">
                     <div className="w-full lg:w-1/2 text-center lg:text-left">
                         <div>
-                            <h1 className="mb-5 text-2xl font-bold">
+                            <h1 className="mb-5 text-2xl lg:text-5xl font-bold">
                                 {activeBanner.title}
                             </h1>
                             <p className="mb-5">{activeBanner.description}</p>
