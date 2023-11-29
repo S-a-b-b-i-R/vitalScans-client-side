@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../Components/Loading/Loading";
 import Container from "../../Components/Container/Container";
+import Button from "../../Components/Button/Button";
 
 const ShowReport = () => {
     const params = useParams();
@@ -18,11 +19,11 @@ const ShowReport = () => {
     if (isPending) return <Loading />;
 
     return (
-        <Container>
+        <Container id="GFG">
             <SectionTitle heading="Report" />
             <div
                 // ref={targetRef}
-                className="w-3/4 mx-auto border border-black px-5 py-20 mb-5 space-y-14"
+                className="w-5/6 mx-auto border border-black px-5 py-20 mb-5 space-y-14"
             >
                 <div className="flex justify-between">
                     <div>
@@ -71,6 +72,16 @@ const ShowReport = () => {
                         immediately.
                     </div>
                 </div>
+            </div>
+
+            <div
+                className="flex justify-center print:hidden"
+                onClick={() => {
+                    //print a specific element that has the id of "printableArea"
+                    window.print();
+                }}
+            >
+                <Button text="Print" />
             </div>
         </Container>
     );

@@ -19,7 +19,7 @@ const Dashboard = () => {
             <Helmet>
                 <title>vitalScans | Dashboard</title>
             </Helmet>
-            <div className="w-1/4 min-h-full bg-orange-100">
+            <div className="w-1/4 min-h-full bg-orange-100 print:hidden">
                 <ul className="menu p-4">
                     {isAdmin ? (
                         <>
