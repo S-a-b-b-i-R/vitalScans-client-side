@@ -29,6 +29,7 @@ import TestResults from "../Pages/Dashboard/TestResults/TestResults";
 import Services from "../Pages/Services/Services";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import Career from "../Pages/Career/Career";
 
 const Routes = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/services",
                 element: <Services />,
+            },
+            {
+                path: "/career",
+                element: <Career />,
             },
             {
                 path: "/about",
