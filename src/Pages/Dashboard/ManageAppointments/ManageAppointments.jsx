@@ -1,27 +1,32 @@
 import { Link } from "react-router-dom";
 import Loading from "../../../Components/Loading/Loading";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import usePayment from "../../../hooks/usePayment";
 import { GrUpdate } from "react-icons/gr";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { getPaymentsBySearchString } from "../../../api/payment";
+import { useEffect } from "react";
 
 const ManageAppointments = () => {
-    const [searchString, setSearchString] = useState("");
+    const [searchString, setSearchString] = useState("null");
     const axiosSecure = useAxiosSecure();
-    const { paymentData, paymentLoading, paymentRefetch } = usePayment();
 
-    const { data, isPending } = useQuery({
-        queryKey: ["payments"],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/payments/${searchString}`);
-            return res.data.payment;
-        },
+    const {
+        data: searchData = [],
+        isPending,
+        refetch,
+    } = useQuery({
+        queryKey: ["search", "payments", searchString],
+        queryFn: async () => await getPaymentsBySearchString(searchString),
     });
 
-    if (paymentLoading) return <Loading />;
+    useEffect(() => {
+        refetch();
+    }, [searchString, refetch]);
+
+    if (isPending) return <Loading />;
 
     const handleCancel = async (id) => {
         try {
@@ -47,6 +52,26 @@ const ManageAppointments = () => {
     return (
         <div className="px-40">
             <SectionTitle heading="Manage Appointments" />
+            <div className="flex justify-center">
+                <div className="join mb-5">
+                    <input
+                        className="input input-bordered join-item w-72"
+                        placeholder="Email"
+                        name="searchstring"
+                    />
+                    <button
+                        className="btn join-item rounded-r-md bg-mainCol hover:bg-mainCol"
+                        onClick={() =>
+                            setSearchString(
+                                document.getElementsByName("searchstring")[0]
+                                    .value
+                            )
+                        }
+                    >
+                        Search
+                    </button>
+                </div>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -62,7 +87,7 @@ const ManageAppointments = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {paymentData.map((item, index) => (
+                        {searchData.payments.map((item, index) => (
                             <tr key={item._id}>
                                 <td>{index + 1}</td>
                                 <td>{item.testId.title}</td>
