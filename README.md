@@ -23,4 +23,4 @@
 -   [x] **Firebase**
         The app is using Firebase for authentication. Firebase is a Backend-as-a-Service (BaaS) app development platform that provides hosted backend services such as a realtime database, cloud storage, authentication, crash reporting, machine learning, remote configuration, and hosting for your static files. I have used Firebase to create a user authentication system for the app.
 
-[Demo](https://job-hunter-cb240.web.app/)
+[Demo](https://vitalscan-diagnostics.web.app/)
