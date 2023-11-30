@@ -136,7 +136,7 @@ const Career = () => {
                     <div className="divider text-xl font-bold text-textCol">
                         How to Apply
                     </div>
-                    <div>
+                    <div className="max-w-2xl mx-auto">
                         <p className="text-center text-lg">
                             To apply for a position at{" "}
                             <span className="text-mainCol font-bold">
@@ -219,6 +219,23 @@ const Career = () => {
                                 <div className="card-actions justify-end"></div>
                             </div>
                         </div>
+                    </div>
+                    <div className="divider text-xl font-bold text-textCol">
+                        Join Us in Making a Difference
+                    </div>
+                    <div className="max-w-2xl mx-auto">
+                        <p className="text-center text-lg">
+                            If you are passionate about healthcare, innovation,
+                            and making a positive impact,{" "}
+                            <span className="text-mainCol font-bold">
+                                vitalScans
+                            </span>{" "}
+                            might be the perfect place for you. Explore our
+                            current job openings and embark on a rewarding
+                            career with us. We look forward to welcoming new
+                            talents who share our vision for a healthier
+                            community.
+                        </p>
                     </div>
                 </div>
             </Container>
