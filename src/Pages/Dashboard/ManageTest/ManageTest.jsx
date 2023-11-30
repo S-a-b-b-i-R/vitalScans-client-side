@@ -75,7 +75,7 @@ const ManageTest = () => {
     };
 
     return (
-        <div className="px-40 space-y-10">
+        <div className="space-y-10">
             <SectionTitle heading="Manage Test" />
             <div className="overflow-x-auto">
                 <table className="table">
@@ -154,7 +154,7 @@ const ManageTest = () => {
                     <select
                         value={itemsPerPage}
                         onChange={handleItemsPerPage}
-                        className="w-52"
+                        className="w-52 border-2 border-gray-300 rounded-md"
                     >
                         <option value="10">10</option>
                         <option value="20">20</option>

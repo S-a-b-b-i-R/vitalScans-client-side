@@ -48,16 +48,6 @@ const ManageAppointments = () => {
         <div className="px-40">
             <SectionTitle heading="Manage Appointments" />
             <div className="overflow-x-auto">
-                <div className="join">
-                    <input
-                        className="input input-bordered join-item"
-                        placeholder="Email"
-                        name="searchField"
-                    />
-                    <button className="btn join-item rounded-r-full">
-                        Search
-                    </button>
-                </div>
                 <table className="table">
                     {/* head */}
                     <thead>

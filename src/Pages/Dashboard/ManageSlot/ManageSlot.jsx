@@ -8,7 +8,7 @@ const ManageSlot = () => {
     const { slotData, slotLoading } = useSlot();
     if (slotLoading) return <Loading />;
     return (
-        <div className="px-40">
+        <div>
             <SectionTitle heading="Manage Slots" />
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

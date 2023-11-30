@@ -30,7 +30,7 @@ const AddTest = () => {
         }
     };
     return (
-        <div className="px-40">
+        <div>
             <SectionTitle heading="Add Test" />
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>

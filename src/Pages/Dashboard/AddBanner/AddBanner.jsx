@@ -40,7 +40,7 @@ const AddBanner = () => {
         }
     };
     return (
-        <div className="px-40">
+        <div>
             <SectionTitle heading="Add Banner" />
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>

@@ -54,7 +54,7 @@ const CreateReport = () => {
     };
 
     return (
-        <div className="px-40">
+        <div>
             <SectionTitle heading="Create Report" />
             <div className="px-40">
                 <form onSubmit={handleSubmit(onSubmit)}>

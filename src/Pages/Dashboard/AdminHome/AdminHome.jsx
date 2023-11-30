@@ -62,7 +62,7 @@ const AdminHome = () => {
         height: PropTypes.number,
     };
     return (
-        <div className="space-y-10 p-20">
+        <div className="space-y-10">
             <div className="flex justify-center gap-5">
                 <div className="stats shadow-xl bg-transparent w-40">
                     <div className="stat">
