@@ -9,7 +9,7 @@ const Contact = () => {
             </h1>
             <div className="divider w-1/3 mx-auto"></div>
             <div className="space-y-5">
-                <div className="flex flex-col lg:flex-row">
+                <div className="flex flex-col items-center lg:flex-row">
                     <div className="w-full lg:w-1/2">
                         <img
                             src="https://i.ibb.co/MDjxtXx/contact.png"
