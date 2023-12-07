@@ -4,7 +4,7 @@ import Container from "../../Components/Container/Container";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Loading from "../../Components/Loading/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./AvailableTest.css";
@@ -13,6 +13,7 @@ import { Helmet } from "react-helmet-async";
 const AvailableTest = () => {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
+    const [pages, setPages] = useState([]);
     const axiosPublic = useAxiosPublic();
     const [startDate, setStartDate] = useState(
         new Date().toISOString().slice(0, 10)
@@ -33,7 +34,11 @@ const AvailableTest = () => {
             return res.data.slots;
         },
     });
-    const { data: slotCount, isPending: slotCountLoading } = useQuery({
+    const {
+        data: slotCount,
+        isPending: slotCountLoading,
+        refetch: slotCountRefetch,
+    } = useQuery({
         queryKey: ["slotsCount"],
         queryFn: async () => {
             const res = await axiosPublic.get(
@@ -42,9 +47,11 @@ const AvailableTest = () => {
             return res.data.slotNumber;
         },
     });
+    useEffect(() => {
+        const numberofPages = Math.ceil(slotCount / itemsPerPage);
+        setPages([...Array(numberofPages).keys()]);
+    }, [startDate, endDate, refetch, slotCount, itemsPerPage]);
     if (slotLoading || slotCountLoading) return <Loading />;
-    const numberofPages = Math.ceil(slotCount / itemsPerPage);
-    const pages = [...Array(numberofPages).keys()];
 
     const handleItemsPerPage = (e) => {
         setItemsPerPage(parseInt(e.target.value));
@@ -76,6 +83,7 @@ const AvailableTest = () => {
             return;
         }
         refetch();
+        slotCountRefetch();
     };
 
     return (
