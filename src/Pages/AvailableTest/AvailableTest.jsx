@@ -91,7 +91,7 @@ const AvailableTest = () => {
             <Helmet>
                 <title>vitalScans | All Tests</title>
             </Helmet>
-            <SectionTitle heading="Available Test" />
+            <SectionTitle heading="Available Tests" />
             <Container>
                 <form onSubmit={handleSearch}>
                     <div className="flex gap-2 items-end justify-center">
