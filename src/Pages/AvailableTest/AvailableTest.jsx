@@ -123,39 +123,51 @@ const AvailableTest = () => {
                     </div>
                 </form>
                 <div className="overflow-x-auto">
-                    <table className="table">
-                        {/* head */}
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Test</th>
-                                <th>Details</th>
-                                <th>Price</th>
-                                <th>Slots</th>
-                                <th>Date</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {slotData.map((item, index) => (
-                                <tr key={item._id}>
-                                    <td>
-                                        {index + 1 + currentPage * itemsPerPage}
-                                    </td>
-                                    <td>{item.testId.title}</td>
-                                    <td>{item.testId.details}</td>
-                                    <td>${item.testId.price}</td>
-                                    <td>{item.slotNum}</td>
-                                    <td>{item.testDate.slice(0, 10)}</td>
-                                    <td>
-                                        <Link to={`/testdetail/${item._id}`}>
-                                            <Button text="Details" />
-                                        </Link>
-                                    </td>
+                    {slotData.length ? (
+                        <table className="table">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Test</th>
+                                    <th>Details</th>
+                                    <th>Price</th>
+                                    <th>Slots</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {slotData.map((item, index) => (
+                                    <tr key={item._id}>
+                                        <td>
+                                            {index +
+                                                1 +
+                                                currentPage * itemsPerPage}
+                                        </td>
+                                        <td>{item.testId.title}</td>
+                                        <td>{item.testId.details}</td>
+                                        <td>${item.testId.price}</td>
+                                        <td>{item.slotNum}</td>
+                                        <td>{item.testDate.slice(0, 10)}</td>
+                                        <td>
+                                            <Link
+                                                to={`/testdetail/${item._id}`}
+                                            >
+                                                <Button text="Details" />
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <div className="flex justify-center items-center h-96">
+                            <h1 className="text-3xl font-semibold text-gray-500">
+                                No Tests Found!
+                            </h1>
+                        </div>
+                    )}
                 </div>
                 <div className="pagination">
                     <button
