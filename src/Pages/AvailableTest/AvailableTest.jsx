@@ -49,7 +49,7 @@ const AvailableTest = () => {
     });
     useEffect(() => {
         const numberofPages = Math.ceil(slotCount / itemsPerPage);
-        setPages([...Array(numberofPages).keys()]);
+        setPages([...Array(numberofPages ? numberofPages : 0).keys()]);
     }, [startDate, endDate, refetch, slotCount, itemsPerPage]);
     if (slotLoading || slotCountLoading) return <Loading />;
 
